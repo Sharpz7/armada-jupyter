@@ -174,6 +174,7 @@ class Submission:
                 limits[YMLSTR.amd_gpu] = self.resources.limits.amd_gpu
 
         return core_v1.PodSpec(
+            activeDeadlineSeconds=self.timeout,
             containers=[
                 core_v1.Container(
                     name=self.name,
@@ -183,7 +184,7 @@ class Submission:
                         requests=requests, limits=limits
                     ),
                 )
-            ]
+            ],
         )
 
 
